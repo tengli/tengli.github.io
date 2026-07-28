@@ -1,37 +1,46 @@
 ---
+import { getCollection } from 'astro:content';
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (
+  await getCollection('projects', ({ data }) => {
+    return data.draft !== true;
+  })
+).sort(
+  (a, b) =>
+    b.data.startDate.valueOf() -
+    a.data.startDate.valueOf(),
+);
 ---
 
 <BaseLayout
   title="项目"
-  description="Teng Li 的 AI 应用和个人开发项目。"
+  description="正在开发和持续迭代的个人技术项目。"
 >
   <div class="page-container">
     <p class="eyebrow">Projects</p>
     <h1 class="page-title">项目</h1>
 
     <p class="page-description">
-      展示正在学习、开发和持续迭代的技术项目。
+      展示我正在学习、开发和持续迭代的技术项目。
     </p>
 
     <section class="section">
-      <div class="card-grid">
-        <article class="card">
-          <p class="card-type">开发中</p>
-          <h3>个人内容网站</h3>
-          <p>
-            使用 Astro、GitHub Pages 和 Markdown 搭建的个人网站。
-          </p>
-        </article>
-
-        <article class="card">
-          <p class="card-type">学习项目</p>
-          <h3>AI 应用开发练习</h3>
-          <p>
-            使用 Python 和 FastAPI 构建的数据处理与 AI 应用项目。
-          </p>
-        </article>
-      </div>
+      {
+        projects.length > 0 ? (
+          <div class="card-grid">
+            {
+              projects.map((project) => (
+                <ProjectCard project={project} />
+              ))
+            }
+          </div>
+        ) : (
+          <p>目前还没有已发布项目。</p>
+        )
+      }
     </section>
   </div>
 </BaseLayout>

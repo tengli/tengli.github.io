@@ -772,3 +772,50 @@
   .project-card h3 a:hover {
     color: var(--color-primary);
   }
+
+  .detail-page {
+    width: min(calc(100% - 40px), 880px);
+  }
+  
+  .detail-header {
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-top: 24px;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+  
+  .detail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  
+  .show-player {
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+    overflow: hidden;
+    border-radius: var(--radius-medium);
+    background: #111827;
+    aspect-ratio: 16 / 9;
+  }
+  
+  .show-player iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  
+  @media (max-width: 800px) {
+    .detail-actions {
+      flex-direction: column;
+    }
+  }
