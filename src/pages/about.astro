@@ -4,42 +4,95 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="关于我"
-  description="关于 Teng Li 的职业经历、AI 学习方向和内容创作。"
+  description="关于 Teng Li 的产品经历、AI 应用开发学习和内容创作。"
 >
   <div class="page-container">
-    <div class="content-container">
-      <p class="eyebrow">About</p>
-      <h1 class="page-title">关于我</h1>
+    <p class="eyebrow">About</p>
 
-      <p class="page-description">
-        我曾长期从事互联网产品工作，目前生活在布里斯班，
-        正在探索新的方向。
-      </p>
+    <h1 class="page-title">
+      从互联网产品工作，
+      走向 AI 应用开发与独立创作。
+    </h1>
 
-      <section class="section">
-        <h2>过去的经历</h2>
+    <p class="page-description">
+      我曾长期从事电商和企业服务产品工作。
+      目前生活在布里斯班，正在系统学习编程与 AI 应用开发，
+      并通过文章、节目和项目记录这一转变。
+    </p>
+
+    <section class="section about-layout">
+      <div class="about-main">
+        <h2>过去的工作</h2>
+
         <p>
-          我拥有约十年的互联网产品经验，主要参与电商、
-          企业服务、CRM、虚拟资产和交易平台相关产品。
+          我拥有约十年的互联网产品经验，参与过电商、
+          企业服务、CRM、礼品卡、虚拟资产和交易平台等产品。
+          这些经历让我长期关注一个问题：
+          如何将复杂的业务需求转化为可以稳定运行的产品系统。
         </p>
-      </section>
 
-      <section class="section">
-        <h2>现在的方向</h2>
-        <p>
-          我正在系统学习 AI 应用构建，
-          希望逐步具备独立设计、开发和发布产品的能力。
-          我喜欢历史，也将分享我的感悟。
-        </p>
-      </section>
+        <h2>为什么学习开发</h2>
 
-      <section class="section">
-        <h2>这个网站</h2>
         <p>
-          这里将集中展示我的文章、音频和视频节目、编程项目，
-          以及学习过程中的阶段性思考。
+          过去我主要负责发现问题、定义需求和协调团队。
+          现在我希望进一步理解软件怎样被真正构建出来，
+          并具备独立完成原型、API、数据处理和 AI 应用的能力。
         </p>
-      </section>
-    </div>
+
+        <h2>当前学习方向</h2>
+
+        <p>
+          目前的学习重点包括 Python、Git、测试、FastAPI、
+          Astro、基础前端开发，以及大语言模型应用和 AI Agent。
+        </p>
+
+        <h2>内容创作</h2>
+
+        <p>
+          除了技术学习，我持续关注社会文化、历史、城市、
+          公共讨论与知识传播。这个网站将集中展示文章、
+          音频和视频节目，以及它们背后的研究资料。
+        </p>
+
+        <h2>这个网站的意义</h2>
+
+        <p>
+          它既是个人介绍网站，也是一个长期作品档案。
+          网站本身同样是一个开发项目：
+          我会持续改进内容系统、交互体验和未来的 AI 功能。
+        </p>
+      </div>
+
+      <aside class="about-aside">
+        <h2>当前信息</h2>
+
+        <dl class="fact-list">
+          <div>
+            <dt>所在地</dt>
+            <dd>Brisbane, Australia</dd>
+          </div>
+
+          <div>
+            <dt>过去经历</dt>
+            <dd>Internet Product Manager</dd>
+          </div>
+
+          <div>
+            <dt>当前方向</dt>
+            <dd>AI Application Development</dd>
+          </div>
+
+          <div>
+            <dt>关注主题</dt>
+            <dd>Technology, Culture, History</dd>
+          </div>
+
+          <div>
+            <dt>正在学习</dt>
+            <dd>Python, FastAPI, Astro</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
   </div>
 </BaseLayout>
