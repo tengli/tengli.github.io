@@ -1,8 +1,9 @@
 ---
+locale: zh
 title: "个人内容网站"
 description: "使用 Astro、Markdown、GitHub 和 GitHub Pages 搭建的个人网站。"
 startDate: 2026-07-28
-status: "开发中"
+status: "building"
 techStack:
   - Astro
   - TypeScript
@@ -31,11 +32,10 @@ featured: true
 - Markdown 文章系统；
 - 节目和项目内容系统；
 - GitHub Actions 自动部署；
-- 响应式布局。
+- 响应式布局；
+- 英文和中文内容切换。
 
 ## 后续计划
-
-未来将逐步加入：
 
 - RSS；
 - 内容搜索；

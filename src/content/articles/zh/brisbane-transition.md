@@ -1,8 +1,9 @@
 ---
+locale: zh
 title: "从互联网产品经理到布里斯班"
 description: "一次城市、职业和生活方式同时发生变化的阶段性记录。"
 publishDate: 2026-07-26
-category: "澳洲生活"
+category: "australia-life"
 tags:
   - 布里斯班
   - 职业转型

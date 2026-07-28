@@ -9,6 +9,7 @@ const articles = defineCollection({
   }),
 
   schema: z.object({
+    locale: z.enum(['en', 'zh']),
     title: z.string(),
     description: z.string(),
 
@@ -16,11 +17,11 @@ const articles = defineCollection({
     updatedDate: z.coerce.date().optional(),
 
     category: z.enum([
-      'AI 与科技',
-      '学习与开发',
-      '社会与文化',
-      '历史与城市',
-      '澳洲生活',
+      'ai-tech',
+      'learning-development',
+      'society-culture',
+      'history-cities',
+      'australia-life',
     ]),
 
     tags: z.array(z.string()).default([]),
@@ -38,17 +39,14 @@ const shows = defineCollection({
   }),
 
   schema: z.object({
+    locale: z.enum(['en', 'zh']),
     title: z.string(),
     description: z.string(),
 
     publishDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
 
-    showType: z.enum([
-      '播客',
-      '视频',
-      '音频',
-    ]),
+    showType: z.enum(['podcast', 'video', 'audio']),
 
     platform: z.enum([
       'YouTube',
@@ -78,6 +76,7 @@ const projects = defineCollection({
   }),
 
   schema: z.object({
+    locale: z.enum(['en', 'zh']),
     title: z.string(),
     description: z.string(),
 
@@ -85,11 +84,11 @@ const projects = defineCollection({
     updatedDate: z.coerce.date().optional(),
 
     status: z.enum([
-      '规划中',
-      '开发中',
-      '持续维护',
-      '已完成',
-      '暂停',
+      'planning',
+      'building',
+      'maintaining',
+      'completed',
+      'paused',
     ]),
 
     techStack: z.array(z.string()).default([]),

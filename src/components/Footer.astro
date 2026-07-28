@@ -1,5 +1,13 @@
 ---
+import { localizedPath, ui, type Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
 const currentYear = new Date().getFullYear();
+const copy = ui[locale];
 ---
 
 <footer class="site-footer">
@@ -7,7 +15,7 @@ const currentYear = new Date().getFullYear();
     <p>© {currentYear} Teng Li</p>
 
     <div class="footer-links">
-      <a href="/about">关于我</a>
+      <a href={localizedPath(locale, '/about')}>{copy.footerAbout}</a>
       <a href="https://github.com/tengli">
         GitHub
       </a>

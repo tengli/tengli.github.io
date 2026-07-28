@@ -1,9 +1,10 @@
 ---
+locale: zh
 title: "我为什么开始学习 AI 应用开发"
 description: "从互联网产品经理转向 AI 应用开发的背景、目标和阶段性学习路线。"
 publishDate: 2026-07-28
 updatedDate: 2026-07-28
-category: "学习与开发"
+category: "learning-development"
 tags:
   - AI
   - 编程学习

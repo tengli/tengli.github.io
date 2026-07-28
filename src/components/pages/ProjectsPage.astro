@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+
+import ProjectCard from '../ProjectCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ui, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = ui[locale].projects;
+const showDrafts = import.meta.env.DEV;
+
+const projects = (
+  await getCollection('projects', ({ data }) =>
+    data.locale === locale && (showDrafts || data.draft !== true),
+  )
+).sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf());
+---
+
+<BaseLayout locale={locale} title={copy.pageTitle} description={copy.description}>
+  <div class="page-container">
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1 class="page-title">{copy.pageTitle}</h1>
+    <p class="page-description">{copy.introduction}</p>
+
+    <section class="section">
+      {
+        projects.length > 0 ? (
+          <div class="card-grid">
+            {projects.map((project) => (
+              <ProjectCard project={project} locale={locale} />
+            ))}
+          </div>
+        ) : (
+          <p>{copy.empty}</p>
+        )
+      }
+    </section>
+  </div>
+</BaseLayout>

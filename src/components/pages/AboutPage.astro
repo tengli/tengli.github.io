@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ui, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = ui[locale].about;
+---
+
+<BaseLayout locale={locale} title={copy.pageTitle} description={copy.description}>
+  <div class="page-container">
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1 class="page-title">{copy.headline}</h1>
+    <p class="page-description">{copy.introduction}</p>
+
+    <section class="section about-layout">
+      <div class="about-main">
+        {
+          copy.sections.map((section) => (
+            <section>
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+            </section>
+          ))
+        }
+      </div>
+
+      <aside class="about-aside">
+        <h2>{copy.asideTitle}</h2>
+        <dl class="fact-list">
+          {
+            copy.facts.map(([label, value]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </aside>
+    </section>
+  </div>
+</BaseLayout>

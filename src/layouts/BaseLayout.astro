@@ -1,42 +1,78 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import {
+  oppositeLocale,
+  switchLocalePath,
+  ui,
+  type Locale,
+} from '../i18n/config';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
+  locale?: Locale;
+  languageSwitchHref?: string;
+  alternateHref?: string | null;
 }
 
 const {
   title,
-  description = '记录 AI 应用开发、社会文化、历史城市与澳洲生活。',
+  description,
+  locale = Astro.currentLocale === 'zh' ? 'zh' : 'en',
+  languageSwitchHref,
+  alternateHref,
 } = Astro.props;
 
+const copy = ui[locale];
 const siteName = 'Teng Li';
-const pageTitle = title === '首页' ? siteName : `${title} | ${siteName}`;
+const pageTitle = title === copy.home.pageTitle ? siteName : `${title} | ${siteName}`;
+const pageDescription = description ?? copy.home.description;
+const targetLocale = oppositeLocale(locale);
+const defaultAlternateHref = switchLocalePath(Astro.url.pathname, targetLocale);
+const resolvedSwitchHref = languageSwitchHref ?? defaultAlternateHref;
+const resolvedAlternateHref =
+  alternateHref === undefined ? defaultAlternateHref : alternateHref;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const alternateURL = resolvedAlternateHref
+  ? new URL(resolvedAlternateHref, Astro.site ?? Astro.url.origin)
+  : null;
+const englishURL = locale === 'en' ? canonicalURL : alternateURL;
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={copy.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
     />
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
 
     <title>{pageTitle}</title>
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={copy.htmlLang} href={canonicalURL} />
+    {
+      alternateURL && (
+        <link
+          rel="alternate"
+          hreflang={ui[targetLocale].htmlLang}
+          href={alternateURL}
+        />
+      )
+    }
+    {englishURL && <link rel="alternate" hreflang="x-default" href={englishURL} />}
   </head>
 
   <body>
-    <Header />
+    <Header locale={locale} languageSwitchHref={resolvedSwitchHref} />
 
     <main class="site-main">
       <slot />
     </main>
 
-    <Footer />
+    <Footer locale={locale} />
   </body>
 </html>

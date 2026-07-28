@@ -1,8 +1,9 @@
 ---
+locale: zh
 title: "我们需要怎样的文化中介"
 description: "从文化生产、公共讨论与内容传播出发，重新理解文化中介的角色。"
 publishDate: 2026-08-20
-showType: "播客"
+showType: "podcast"
 platform: "Podcast"
 episodeNumber: 1
 duration: "25 分钟"

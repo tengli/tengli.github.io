@@ -1,17 +1,37 @@
 ---
+import {
+  localizedPath,
+  oppositeLocale,
+  switchLocalePath,
+  ui,
+  type Locale,
+} from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  languageSwitchHref?: string;
+}
+
+const { locale, languageSwitchHref } = Astro.props;
 const currentPath = Astro.url.pathname;
+const copy = ui[locale];
+const targetLocale = oppositeLocale(locale);
 
 const navItems = [
-  { label: '首页', href: '/' },
-  { label: '文章', href: '/articles' },
-  { label: '节目', href: '/shows' },
-  { label: '项目', href: '/projects' },
-  { label: '关于', href: '/about' },
+  { label: copy.navigation.home, href: localizedPath(locale, '/') },
+  { label: copy.navigation.articles, href: localizedPath(locale, '/articles') },
+  { label: copy.navigation.shows, href: localizedPath(locale, '/shows') },
+  { label: copy.navigation.projects, href: localizedPath(locale, '/projects') },
+  { label: copy.navigation.about, href: localizedPath(locale, '/about') },
 ];
 
+const switchHref =
+  languageSwitchHref ?? switchLocalePath(currentPath, targetLocale);
+const homePath = localizedPath(locale, '/');
+
 function isActive(href: string): boolean {
-  if (href === '/') {
-    return currentPath === '/';
+  if (href === homePath) {
+    return currentPath === homePath || currentPath === homePath.replace(/\/$/, '');
   }
 
   return currentPath.startsWith(href);
@@ -20,24 +40,35 @@ function isActive(href: string): boolean {
 
 <header class="site-header">
   <div class="header-inner">
-    <a class="site-name" href="/">Teng Li</a>
+    <a class="site-name" href={localizedPath(locale, '/')}>Teng Li</a>
 
-    <nav aria-label="主要导航">
-      <ul class="nav-list">
-        {
-          navItems.map((item) => (
-            <li>
-              <a
-                class:list={['nav-link', { active: isActive(item.href) }]}
-                href={item.href}
-                aria-current={isActive(item.href) ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <div class="header-actions">
+      <nav aria-label={copy.navigationLabel}>
+        <ul class="nav-list">
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  class:list={['nav-link', { active: isActive(item.href) }]}
+                  href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <a
+        class="language-switch"
+        href={switchHref}
+        lang={ui[targetLocale].htmlLang}
+        hreflang={ui[targetLocale].htmlLang}
+      >
+        {copy.languageSwitch}
+      </a>
+    </div>
   </div>
 </header>

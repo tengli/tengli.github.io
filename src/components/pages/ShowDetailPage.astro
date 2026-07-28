@@ -1,0 +1,83 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { localizedPath, ui, type Locale } from '../../i18n/config';
+import { formatDate } from '../../utils/formatDate';
+
+interface Props {
+  show: CollectionEntry<'shows'>;
+  locale: Locale;
+  alternateHref: string | null;
+}
+
+const { show, locale, alternateHref } = Astro.props;
+const { Content } = await render(show);
+const copy = ui[locale];
+const languageSwitchHref = alternateHref ?? localizedPath(locale === 'en' ? 'zh' : 'en', '/shows');
+---
+
+<BaseLayout
+  locale={locale}
+  title={show.data.title}
+  description={show.data.description}
+  languageSwitchHref={languageSwitchHref}
+  alternateHref={alternateHref}
+>
+  <article class="page-container detail-page">
+    <header class="detail-header">
+      <p class="eyebrow">{copy.showTypes[show.data.showType]} · {show.data.platform}</p>
+      <h1 class="page-title">{show.data.title}</h1>
+      <p class="page-description">{show.data.description}</p>
+
+      <div class="detail-meta">
+        <time datetime={show.data.publishDate.toISOString()}>
+          {copy.shows.publishedOn} {formatDate(show.data.publishDate, locale)}
+        </time>
+        {
+          show.data.episodeNumber && (
+            <span>{copy.shows.episode.replace('{number}', String(show.data.episodeNumber))}</span>
+          )
+        }
+        {show.data.duration && <span>{show.data.duration}</span>}
+      </div>
+    </header>
+
+    {
+      show.data.embedUrl && (
+        <div class="show-player">
+          <iframe
+            src={show.data.embedUrl}
+            title={show.data.title}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        </div>
+      )
+    }
+
+    {
+      show.data.externalUrl && (
+        <div class="detail-actions">
+          <a
+            class="button button-primary"
+            href={show.data.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {copy.shows.platformAction}
+          </a>
+        </div>
+      )
+    }
+
+    <div class="article-content"><Content /></div>
+
+    <footer class="article-footer">
+      <a class="text-link" href={localizedPath(locale, '/shows')}>
+        ← {copy.shows.back}
+      </a>
+    </footer>
+  </article>
+</BaseLayout>

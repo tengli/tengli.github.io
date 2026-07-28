@@ -1,0 +1,86 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { localizedPath, ui, type Locale } from '../../i18n/config';
+import { formatDate } from '../../utils/formatDate';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  locale: Locale;
+  alternateHref: string | null;
+}
+
+const { project, locale, alternateHref } = Astro.props;
+const { Content } = await render(project);
+const copy = ui[locale];
+const languageSwitchHref = alternateHref ?? localizedPath(locale === 'en' ? 'zh' : 'en', '/projects');
+---
+
+<BaseLayout
+  locale={locale}
+  title={project.data.title}
+  description={project.data.description}
+  languageSwitchHref={languageSwitchHref}
+  alternateHref={alternateHref}
+>
+  <article class="page-container detail-page">
+    <header class="detail-header">
+      <p class="eyebrow">{copy.projectStatuses[project.data.status]}</p>
+      <h1 class="page-title">{project.data.title}</h1>
+      <p class="page-description">{project.data.description}</p>
+
+      <div class="detail-meta">
+        <span>{copy.projects.startedOn} {formatDate(project.data.startDate, locale)}</span>
+        {
+          project.data.updatedDate && (
+            <span>{copy.projects.updatedOn} {formatDate(project.data.updatedDate, locale)}</span>
+          )
+        }
+      </div>
+
+      {
+        project.data.techStack.length > 0 && (
+          <ul class="tag-list" aria-label={copy.projects.techLabel}>
+            {project.data.techStack.map((technology) => <li class="tag">{technology}</li>)}
+          </ul>
+        )
+      }
+
+      <div class="detail-actions">
+        {
+          project.data.demoUrl && (
+            <a
+              class="button button-primary"
+              href={project.data.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {copy.projects.demoAction}
+            </a>
+          )
+        }
+        {
+          project.data.repositoryUrl && (
+            <a
+              class="button button-secondary"
+              href={project.data.repositoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {copy.projects.repositoryAction}
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="article-content"><Content /></div>
+
+    <footer class="article-footer">
+      <a class="text-link" href={localizedPath(locale, '/projects')}>
+        ← {copy.projects.back}
+      </a>
+    </footer>
+  </article>
+</BaseLayout>

@@ -1,8 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-import ShowDetailPage from '../../components/pages/ShowDetailPage.astro';
-import { contentPath, contentSlug } from '../../i18n/config';
+import ShowDetailPage from '../../../components/pages/ShowDetailPage.astro';
+import { contentPath, contentSlug } from '../../../i18n/config';
 
 export async function getStaticPaths() {
   const showDrafts = import.meta.env.DEV;
@@ -12,18 +12,18 @@ export async function getStaticPaths() {
   );
 
   return allShows
-    .filter(({ data }) => data.locale === 'en')
+    .filter(({ data }) => data.locale === 'zh')
     .map((show) => {
       const slug = contentSlug(show.id);
       const translation = allShows.find(
-        (entry) => entry.data.locale === 'zh' && contentSlug(entry.id) === slug,
+        (entry) => entry.data.locale === 'en' && contentSlug(entry.id) === slug,
       );
 
       return {
         params: { id: slug },
         props: {
           show,
-          alternateHref: translation ? contentPath('shows', translation.id, 'zh') : null,
+          alternateHref: translation ? contentPath('shows', translation.id, 'en') : null,
         },
       };
     });
@@ -37,4 +37,4 @@ interface Props {
 const { show, alternateHref } = Astro.props;
 ---
 
-<ShowDetailPage show={show} locale="en" alternateHref={alternateHref} />
+<ShowDetailPage show={show} locale="zh" alternateHref={alternateHref} />
