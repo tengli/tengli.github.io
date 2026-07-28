@@ -20,14 +20,14 @@ const {
 } = Astro.props;
 ---
 
-<article class="card">
+<article class="card content-card">
   <p class="card-type">{type}</p>
 
   {meta && <p class="card-meta">{meta}</p>}
 
-  <h3>{title}</h3>
+  <h3><a class="card-title" href={href}>{title}</a></h3>
 
-  <p>{description}</p>
+  <p class="card-description">{description}</p>
 
   {
     tags.length > 0 && (
@@ -41,7 +41,9 @@ const {
     )
   }
 
-  <a class="text-link" href={href}>
-    {linkLabel} →
-  </a>
+  <footer class="card-footer">
+    <a class="text-link" href={href}>
+      {linkLabel} <span aria-hidden="true">↗</span>
+    </a>
+  </footer>
 </article>

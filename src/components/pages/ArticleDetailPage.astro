@@ -25,6 +25,10 @@ const languageSwitchHref = alternateHref ?? localizedPath(locale === 'en' ? 'zh'
   alternateHref={alternateHref}
 >
   <article class="page-container article-page">
+    <a class="detail-back-link" href={localizedPath(locale, '/articles')}>
+      <span aria-hidden="true">←</span> {copy.articles.back}
+    </a>
+
     <header class="article-header">
       <p class="eyebrow">{copy.articleCategories[article.data.category]}</p>
       <h1 class="page-title">{article.data.title}</h1>
@@ -44,20 +48,26 @@ const languageSwitchHref = alternateHref ?? localizedPath(locale === 'en' ? 'zh'
         {article.data.draft && <span class="draft-label">{copy.articles.draftPreview}</span>}
       </div>
 
-      {
-        article.data.tags.length > 0 && (
-          <ul class="tag-list" aria-label={copy.articles.tagsLabel}>
-            {article.data.tags.map((tag) => <li class="tag">{tag}</li>)}
-          </ul>
-        )
-      }
     </header>
 
-    <div class="article-content"><Content /></div>
+    <div class="article-layout">
+      <aside class="article-rail">
+        <p class="article-rail-label">{copy.articleCategories[article.data.category]}</p>
+        {
+          article.data.tags.length > 0 && (
+            <ul class="tag-list" aria-label={copy.articles.tagsLabel}>
+              {article.data.tags.map((tag) => <li class="tag">{tag}</li>)}
+            </ul>
+          )
+        }
+      </aside>
+
+      <div class="article-content"><Content /></div>
+    </div>
 
     <footer class="article-footer">
-      <a class="text-link" href={localizedPath(locale, '/articles')}>
-        ← {copy.articles.back}
+      <a class="button button-secondary" href={localizedPath(locale, '/articles')}>
+        <span aria-hidden="true">←</span> {copy.articles.back}
       </a>
     </footer>
   </article>

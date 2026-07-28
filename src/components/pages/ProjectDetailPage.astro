@@ -25,61 +25,71 @@ const languageSwitchHref = alternateHref ?? localizedPath(locale === 'en' ? 'zh'
   alternateHref={alternateHref}
 >
   <article class="page-container detail-page">
-    <header class="detail-header">
-      <p class="eyebrow">{copy.projectStatuses[project.data.status]}</p>
-      <h1 class="page-title">{project.data.title}</h1>
-      <p class="page-description">{project.data.description}</p>
+    <a class="detail-back-link" href={localizedPath(locale, '/projects')}>
+      <span aria-hidden="true">←</span> {copy.projects.back}
+    </a>
 
-      <div class="detail-meta">
-        <span>{copy.projects.startedOn} {formatDate(project.data.startDate, locale)}</span>
-        {
-          project.data.updatedDate && (
-            <span>{copy.projects.updatedOn} {formatDate(project.data.updatedDate, locale)}</span>
-          )
-        }
+    <header class="detail-header project-hero">
+      <div class="project-hero-copy">
+        <p class="eyebrow">{copy.projects.pageTitle}</p>
+        <h1 class="page-title">{project.data.title}</h1>
+        <p class="page-description">{project.data.description}</p>
       </div>
 
-      {
-        project.data.techStack.length > 0 && (
-          <ul class="tag-list" aria-label={copy.projects.techLabel}>
-            {project.data.techStack.map((technology) => <li class="tag">{technology}</li>)}
-          </ul>
-        )
-      }
+      <aside class="project-facts">
+        <p class="project-status">{copy.projectStatuses[project.data.status]}</p>
 
-      <div class="detail-actions">
+        <div class="detail-meta">
+          <span>{copy.projects.startedOn} {formatDate(project.data.startDate, locale)}</span>
+          {
+            project.data.updatedDate && (
+              <span>{copy.projects.updatedOn} {formatDate(project.data.updatedDate, locale)}</span>
+            )
+          }
+        </div>
+
         {
-          project.data.demoUrl && (
-            <a
-              class="button button-primary"
-              href={project.data.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {copy.projects.demoAction}
-            </a>
+          project.data.techStack.length > 0 && (
+            <ul class="tag-list" aria-label={copy.projects.techLabel}>
+              {project.data.techStack.map((technology) => <li class="tag">{technology}</li>)}
+            </ul>
           )
         }
-        {
-          project.data.repositoryUrl && (
-            <a
-              class="button button-secondary"
-              href={project.data.repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {copy.projects.repositoryAction}
-            </a>
-          )
-        }
-      </div>
+
+        <div class="detail-actions">
+          {
+            project.data.demoUrl && (
+              <a
+                class="button button-primary"
+                href={project.data.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {copy.projects.demoAction} <span aria-hidden="true">↗</span>
+              </a>
+            )
+          }
+          {
+            project.data.repositoryUrl && (
+              <a
+                class="button button-secondary"
+                href={project.data.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {copy.projects.repositoryAction} <span aria-hidden="true">↗</span>
+              </a>
+            )
+          }
+        </div>
+      </aside>
     </header>
 
-    <div class="article-content"><Content /></div>
+    <div class="article-content project-story"><Content /></div>
 
     <footer class="article-footer">
-      <a class="text-link" href={localizedPath(locale, '/projects')}>
-        ← {copy.projects.back}
+      <a class="button button-secondary" href={localizedPath(locale, '/projects')}>
+        <span aria-hidden="true">←</span> {copy.projects.back}
       </a>
     </footer>
   </article>

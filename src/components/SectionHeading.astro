@@ -1,5 +1,6 @@
 ---
 interface Props {
+  kicker?: string;
   title: string;
   description?: string;
   href?: string;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const {
+  kicker,
   title,
   description,
   href,
@@ -16,6 +18,7 @@ const {
 
 <div class="section-heading-row">
   <div class="section-heading">
+    {kicker && <p class="section-kicker">{kicker}</p>}
     <h2>{title}</h2>
 
     {

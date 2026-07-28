@@ -10,6 +10,11 @@ export const ui = {
     htmlLang: 'en',
     dateLocale: 'en-AU',
     languageSwitch: '中文',
+    skipToContent: 'Skip to content',
+    theme: {
+      toDark: 'Use dark mode',
+      toLight: 'Use light mode',
+    },
     navigationLabel: 'Primary navigation',
     navigation: {
       home: 'Home',
@@ -30,6 +35,13 @@ export const ui = {
         "I'm Teng Li, a former internet product manager based in Brisbane. I'm learning to build AI applications and documenting the process through essays, shows and hands-on projects.",
       primaryAction: 'Explore my work',
       secondaryAction: 'About me',
+      currentLabel: 'Current practice',
+      currentTitle: 'Building an independent body of work.',
+      currentDescription:
+        'Small software products, long-form essays and cultural conversations—developed in public, one useful iteration at a time.',
+      focusLabel: 'Current focus',
+      focusValue: 'AI applications · Editorial systems',
+      articlesKicker: '01 / Journal',
       articlesTitle: 'Latest writing',
       articlesDescription:
         'Notes on learning, building, culture and personal change.',
@@ -40,11 +52,13 @@ export const ui = {
         'Turning what I learn into useful, evolving projects.',
       projectsLink: 'All projects',
       noProjects: 'No featured projects yet.',
+      projectsKicker: '02 / Works',
       showsTitle: 'Shows',
       showsDescription:
         'Audio and video conversations about culture and public life.',
       showsLink: 'All shows',
       noShows: 'No featured shows yet.',
+      showsKicker: '03 / Broadcast',
     },
     about: {
       pageTitle: 'About',
@@ -161,6 +175,11 @@ export const ui = {
     htmlLang: 'zh-CN',
     dateLocale: 'zh-CN',
     languageSwitch: 'English',
+    skipToContent: '跳到主要内容',
+    theme: {
+      toDark: '切换为深色模式',
+      toLight: '切换为浅色模式',
+    },
     navigationLabel: '主要导航',
     navigation: {
       home: '首页',
@@ -180,6 +199,13 @@ export const ui = {
         '我是 Teng Li，曾长期从事互联网产品工作，现居布里斯班。目前正在学习 AI 应用开发，并持续写作科技、历史、城市与社会文化相关内容。',
       primaryAction: '浏览作品',
       secondaryAction: '了解我',
+      currentLabel: '当前实践',
+      currentTitle: '持续建立一组属于自己的长期作品。',
+      currentDescription:
+        '从小型软件产品、长篇写作到文化对谈，在公开实践中逐步迭代，让每次学习都留下可用的成果。',
+      focusLabel: '当前重点',
+      focusValue: 'AI 应用 · 内容系统',
+      articlesKicker: '01 / Journal',
       articlesTitle: '最新文章',
       articlesDescription: '关于技术学习、文化观察和个人转型的记录。',
       articlesLink: '全部文章',
@@ -188,10 +214,12 @@ export const ui = {
       projectsDescription: '将学习过程转化为可以展示和持续迭代的项目。',
       projectsLink: '全部项目',
       noProjects: '目前还没有精选项目。',
+      projectsKicker: '02 / Works',
       showsTitle: '节目',
       showsDescription: '围绕社会文化与公共议题展开的音频和视频内容。',
       showsLink: '全部节目',
       noShows: '目前还没有精选节目。',
+      showsKicker: '03 / Broadcast',
     },
     about: {
       pageTitle: '关于我',

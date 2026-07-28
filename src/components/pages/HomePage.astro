@@ -42,23 +42,38 @@ const featuredProjects = (
 
 <BaseLayout locale={locale} title={copy.pageTitle} description={copy.description}>
   <div class="page-container">
-    <section class="hero">
-      <p class="eyebrow">{copy.eyebrow}</p>
-      <h1>{copy.headline}</h1>
-      <p class="hero-description">{copy.introduction}</p>
+    <section class="hero home-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h1>{copy.headline}</h1>
+        <p class="hero-description">{copy.introduction}</p>
 
-      <div class="hero-actions">
-        <a class="button button-primary" href={localizedPath(locale, '/projects')}>
-          {copy.primaryAction}
-        </a>
-        <a class="button button-secondary" href={localizedPath(locale, '/about')}>
-          {copy.secondaryAction}
-        </a>
+        <div class="hero-actions">
+          <a class="button button-primary" href={localizedPath(locale, '/projects')}>
+            {copy.primaryAction}
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button button-secondary" href={localizedPath(locale, '/about')}>
+            {copy.secondaryAction}
+          </a>
+        </div>
       </div>
+
+      <aside class="hero-note" aria-label={copy.currentLabel}>
+        <div class="hero-note-index" aria-hidden="true">TL / 01</div>
+        <p class="hero-note-label">{copy.currentLabel}</p>
+        <h2>{copy.currentTitle}</h2>
+        <p>{copy.currentDescription}</p>
+        <dl class="hero-focus">
+          <dt>{copy.focusLabel}</dt>
+          <dd>{copy.focusValue}</dd>
+        </dl>
+      </aside>
     </section>
 
-    <section class="section">
+    <section class="section home-section">
       <SectionHeading
+        kicker={copy.articlesKicker}
         title={copy.articlesTitle}
         description={copy.articlesDescription}
         href={localizedPath(locale, '/articles')}
@@ -77,8 +92,9 @@ const featuredProjects = (
       }
     </section>
 
-    <section class="section">
+    <section class="section home-section">
       <SectionHeading
+        kicker={copy.projectsKicker}
         title={copy.projectsTitle}
         description={copy.projectsDescription}
         href={localizedPath(locale, '/projects')}
@@ -97,8 +113,9 @@ const featuredProjects = (
       }
     </section>
 
-    <section class="section">
+    <section class="section home-section">
       <SectionHeading
+        kicker={copy.showsKicker}
         title={copy.showsTitle}
         description={copy.showsDescription}
         href={localizedPath(locale, '/shows')}

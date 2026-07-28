@@ -45,11 +45,28 @@ const englishURL = locale === 'en' ? canonicalURL : alternateURL;
 <html lang={copy.htmlLang}>
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      {
+        const storedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+        const theme =
+          storedTheme === 'dark' || storedTheme === 'light'
+            ? storedTheme
+            : systemTheme;
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      }
+    </script>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
     />
     <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151714" media="(prefers-color-scheme: dark)" />
 
     <title>{pageTitle}</title>
     <link rel="canonical" href={canonicalURL} />
@@ -67,9 +84,10 @@ const englishURL = locale === 'en' ? canonicalURL : alternateURL;
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">{copy.skipToContent}</a>
     <Header locale={locale} languageSwitchHref={resolvedSwitchHref} />
 
-    <main class="site-main">
+    <main class="site-main" id="main-content">
       <slot />
     </main>
 

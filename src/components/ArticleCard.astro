@@ -28,7 +28,7 @@ const articleUrl = contentPath('articles', article.id, locale);
 ---
 
 <article class="card article-card">
-  <div class="article-meta">
+  <div class="card-meta-row article-meta">
     <span class="article-category">{copy.articleCategories[category]}</span>
 
     <time datetime={publishDate.toISOString()}>
@@ -39,30 +39,32 @@ const articleUrl = contentPath('articles', article.id, locale);
   </div>
 
   <h3>
-    <a href={articleUrl}>
+    <a class="card-title" href={articleUrl}>
       {title}
     </a>
   </h3>
 
-  <p>{description}</p>
+  <p class="card-description">{description}</p>
 
-  {
-    tags.length > 0 && (
-      <ul class="tag-list" aria-label={copy.articles.tagsLabel}>
-        {
-          tags.slice(0, 3).map((tag) => (
-            <li class="tag">{tag}</li>
-          ))
-        }
-      </ul>
-    )
-  }
+  <footer class="card-footer">
+    {
+      tags.length > 0 && (
+        <ul class="tag-list" aria-label={copy.articles.tagsLabel}>
+          {
+            tags.slice(0, 3).map((tag) => (
+              <li class="tag">{tag}</li>
+            ))
+          }
+        </ul>
+      )
+    }
 
-  <a
-    class="text-link"
-    href={articleUrl}
-    aria-label={`${copy.articles.read}: ${title}`}
-  >
-    {copy.articles.read} →
-  </a>
+    <a
+      class="text-link"
+      href={articleUrl}
+      aria-label={`${copy.articles.read}: ${title}`}
+    >
+      {copy.articles.read} <span aria-hidden="true">↗</span>
+    </a>
+  </footer>
 </article>

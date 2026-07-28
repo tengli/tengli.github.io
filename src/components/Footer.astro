@@ -12,13 +12,25 @@ const copy = ui[locale];
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p>© {currentYear} Teng Li</p>
+    <div class="footer-intro">
+      <a class="footer-brand" href={localizedPath(locale, '/')}>Teng Li Works</a>
+      <p>{copy.home.description}</p>
+    </div>
 
-    <div class="footer-links">
+    <nav class="footer-nav" aria-label={copy.navigationLabel}>
+      <a href={localizedPath(locale, '/articles')}>{copy.navigation.articles}</a>
+      <a href={localizedPath(locale, '/shows')}>{copy.navigation.shows}</a>
+      <a href={localizedPath(locale, '/projects')}>{copy.navigation.projects}</a>
       <a href={localizedPath(locale, '/about')}>{copy.footerAbout}</a>
-      <a href="https://github.com/tengli">
-        GitHub
-      </a>
+    </nav>
+
+    <div class="footer-meta">
+      <p>© {currentYear} Teng Li</p>
+      <div class="footer-links">
+        <a href="https://github.com/tengli" target="_blank" rel="noopener noreferrer">
+          GitHub ↗
+        </a>
+      </div>
     </div>
   </div>
 </footer>
