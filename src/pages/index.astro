@@ -1,11 +1,93 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="首页"
+  description="Teng Li 的个人网站，记录 AI 应用开发、社会文化、历史与澳洲生活。"
+>
+  <div class="page-container">
+    <section class="hero">
+      <p class="eyebrow">Product · AI · Culture</p>
+
+      <h1>
+        在技术、产品与人文之间，
+        建立自己的长期作品。
+      </h1>
+
+      <p class="hero-description">
+        我是 Teng Li，曾长期从事互联网产品工作，现居布里斯班。
+        目前正在学习 AI 应用开发，并持续写作科技、历史、城市与社会文化相关内容。
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>最新文章</h2>
+        <p>关于技术学习、文化观察和个人转型的记录。</p>
+      </div>
+
+      <div class="card-grid">
+        <article class="card">
+          <p class="card-type">学习与开发</p>
+          <h3>我为什么开始学习 AI 应用开发</h3>
+          <p>
+            从产品经理转向 AI 应用开发的背景、目标与阶段性路线。
+          </p>
+          <a class="text-link" href="/articles">
+            查看文章 →
+          </a>
+        </article>
+
+        <article class="card">
+          <p class="card-type">社会与文化</p>
+          <h3>文化中介在公共讨论中扮演什么角色</h3>
+          <p>
+            从知识生产、传播机制与公共表达重新理解文化中介。
+          </p>
+          <a class="text-link" href="/articles">
+            查看文章 →
+          </a>
+        </article>
+
+        <article class="card">
+          <p class="card-type">澳洲生活</p>
+          <h3>从互联网产品经理到布里斯班</h3>
+          <p>
+            一次职业、城市和生活方式同时发生变化的阶段性记录。
+          </p>
+          <a class="text-link" href="/articles">
+            查看文章 →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <h2>节目与项目</h2>
+        <p>正在创作的音频节目，以及正在开发的技术项目。</p>
+      </div>
+
+      <div class="card-grid">
+        <article class="card">
+          <p class="card-type">音频节目</p>
+          <h3>社会文化观察</h3>
+          <p>讨论文化现象、公共议题和观念如何参与社会生活。</p>
+          <a class="text-link" href="/shows">
+            查看节目 →
+          </a>
+        </article>
+
+        <article class="card">
+          <p class="card-type">开发项目</p>
+          <h3>个人内容网站</h3>
+          <p>使用 Astro、Markdown、GitHub 和 GitHub Pages 搭建。</p>
+          <a class="text-link" href="/projects">
+            查看项目 →
+          </a>
+        </article>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
