@@ -623,3 +623,31 @@
       width: 100%;
     }
   }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+  
+  .article-category {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  
+  .draft-label {
+    padding: 2px 7px;
+    border-radius: 999px;
+    color: #92400e;
+    background: #fef3c7;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  
+  .article-card h3 a:hover {
+    color: var(--color-primary);
+  }
