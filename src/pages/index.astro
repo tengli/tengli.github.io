@@ -2,33 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ContentCard from '../components/ContentCard.astro';
+import { getCollection } from 'astro:content';
+import ArticleCard from '../components/ArticleCard.astro';
 
-const articleCards = [
-  {
-    type: '学习与开发',
-    title: '我为什么开始学习 AI 应用开发',
-    description:
-      '从产品经理转向 AI 应用开发的背景、目标与阶段性学习路线。',
-    href: '/articles',
-    tags: ['AI', '编程学习', '职业转型'],
-  },
-  {
-    type: '社会与文化',
-    title: '文化中介在公共讨论中扮演什么角色',
-    description:
-      '从知识生产、传播机制与公共表达重新理解文化中介。',
-    href: '/articles',
-    tags: ['文化观察', '公共讨论'],
-  },
-  {
-    type: '澳洲生活',
-    title: '从互联网产品经理到布里斯班',
-    description:
-      '一次职业、城市和生活方式同时发生变化的阶段性记录。',
-    href: '/articles',
-    tags: ['布里斯班', '个人记录'],
-  },
-];
+const latestArticles = (
+  await getCollection('articles', ({ data }) => {
+    return data.draft !== true;
+  })
+)
+  .sort(
+    (a, b) =>
+      b.data.publishDate.valueOf() -
+      a.data.publishDate.valueOf(),
+  )
+  .slice(0, 3);
 
 const projectCards = [
   {
@@ -39,15 +26,6 @@ const projectCards = [
     href: '/projects',
     meta: '开发中',
     tags: ['Astro', 'GitHub'],
-  },
-  {
-    type: 'AI 学习项目',
-    title: '订单数据分析与 API',
-    description:
-      '使用 Python、测试和 FastAPI 逐步构建数据处理服务。',
-    href: '/projects',
-    meta: '学习中',
-    tags: ['Python', 'FastAPI'],
   },
 ];
 
@@ -102,20 +80,19 @@ const showCards = [
         linkLabel="全部文章"
       />
 
-      <div class="card-grid">
-        {
-          articleCards.map((card) => (
-            <ContentCard
-              type={card.type}
-              title={card.title}
-              description={card.description}
-              href={card.href}
-              tags={card.tags}
-              linkLabel="查看文章"
-            />
-          ))
-        }
-      </div>
+      {
+  latestArticles.length > 0 ? (
+    <div class="card-grid">
+      {
+        latestArticles.map((article) => (
+          <ArticleCard article={article} />
+        ))
+      }
+    </div>
+  ) : (
+    <p>目前还没有已发布文章。</p>
+  )
+}
     </section>
 
     <section class="section">
