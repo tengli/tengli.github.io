@@ -732,3 +732,43 @@
     padding-top: 24px;
     border-top: 1px solid var(--color-border);
   }
+
+  .card-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+  
+  .card-label,
+  .status-label {
+    display: inline-flex;
+    padding: 3px 8px;
+    border-radius: 999px;
+    color: var(--color-primary);
+    background: #edf3ff;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  
+  .show-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 16px;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+  }
+  
+  .show-details span:not(:last-child)::after {
+    margin-left: 16px;
+    content: "·";
+  }
+  
+  .show-card h3 a:hover,
+  .project-card h3 a:hover {
+    color: var(--color-primary);
+  }
