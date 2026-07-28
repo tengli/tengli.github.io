@@ -1,0 +1,47 @@
+---
+interface Props {
+  type: string;
+  title: string;
+  description: string;
+  href: string;
+  linkLabel?: string;
+  meta?: string;
+  tags?: string[];
+}
+
+const {
+  type,
+  title,
+  description,
+  href,
+  linkLabel = '查看详情',
+  meta,
+  tags = [],
+} = Astro.props;
+---
+
+<article class="card">
+  <p class="card-type">{type}</p>
+
+  {meta && <p class="card-meta">{meta}</p>}
+
+  <h3>{title}</h3>
+
+  <p>{description}</p>
+
+  {
+    tags.length > 0 && (
+      <ul class="tag-list" aria-label="标签">
+        {
+          tags.map((tag) => (
+            <li class="tag">{tag}</li>
+          ))
+        }
+      </ul>
+    )
+  }
+
+  <a class="text-link" href={href}>
+    {linkLabel} →
+  </a>
+</article>
