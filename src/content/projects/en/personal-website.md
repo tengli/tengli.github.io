@@ -11,7 +11,7 @@ techStack:
   - CSS
   - GitHub Actions
 repositoryUrl: "https://github.com/tengli/tengli.github.io"
-demoUrl: "https://tengli.github.io"
+demoUrl: "https://tengliworks.com"
 draft: false
 featured: true
 ---
